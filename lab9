@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <math.h>
+
+long long min_steps(long long x, long long y) {
+    long long diff = y - x;
+
+    if (diff <= 0) return 0;
+    long long steps = 0;
+    long long max_distance = 0;
+    long long current_step_len = 1;
+
+    while (max_distance < diff) {
+        max_distance += current_step_len;
+        steps++;
+        
+        if (max_distance >= diff) break;
+        max_distance += current_step_len;
+        steps++;
+        current_step_len++;
+    }
+    return steps;
+}
+int main() {
+    long long x, y;
+
+    if (scanf("%lld %lld", &x, &y) == 2) {
+        printf("%lld\n", min_steps(x, y));
+    }
+    return 0;
+}
